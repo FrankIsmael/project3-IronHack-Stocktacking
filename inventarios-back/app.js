@@ -4,7 +4,6 @@ const bodyParser   = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express      = require('express');
 const favicon      = require('serve-favicon');
-const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
@@ -12,8 +11,9 @@ const session      = require('express-session')
 const passport     = require('./handlers/passport')
 const cors         = require('cors')
 
+
 mongoose
-  .connect('mongodb://localhost/inventarios-back', {useNewUrlParser: true})
+  .connect(process.env.DB, { useNewUrlParser: true })
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
@@ -28,7 +28,7 @@ const app = express();
 
 app.use(
   session({
-    secret: 'S3CR3T',
+    secret: process.env.SECRET,
     saveUninitialized: true,
     resave: true,
     cookie:{ maxAge: 1000*60*60*24}
@@ -58,22 +58,25 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
-      
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
-
-
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
-
-
 const index = require('./routes/index');
-app.use('/', index);
+app.use('/api', index);
 
+const articlesRoutes = require('./routes/article-routes')
+app.use('/api',articlesRoutes)
+
+const documentsRoutes = require('./routes/document-routes')
+app.use('/api',documentsRoutes)
+
+const suppliersRoutes = require('./routes/supplier-routes')
+app.use('/api',suppliersRoutes) 
 
 module.exports = app;
