@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../Navbar/Navbar';
 import AuthService from '../auth/auth-service'
 import toastr from 'toastr'
+import AddDocument from './AddDocumentos';
 
 const service = new AuthService()
 
@@ -34,13 +35,8 @@ export default class ProfileAdmin extends Component {
             }}
           >
             Logout
-          </button>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={this.handleChange}
-            name="image"
-          />
+          </button> <hr/>
+          <AddDocument/>
         </section>
       </>
     )

@@ -8,6 +8,7 @@ class AuthService {
       withCredentials: true
     })
   }
+
   new = form => {
     return this.service
       .post('/newuser', form)
@@ -37,8 +38,18 @@ class AuthService {
       .get('/loggedin')
   }
 
+  handleUpload = (theFile) => {
+    return this.service
+    .post('/upload',theFile)
+    .then(res => res.data)
+    .catch(err => {throw err})
+  } 
 
-
+  saveDocument = (newDocument) => {
+    return this.service
+    .post('/documents',newDocument)
+    .then(err => {throw err})
+  }
 }
 
 export default AuthService
