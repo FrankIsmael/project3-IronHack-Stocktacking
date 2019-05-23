@@ -79,4 +79,6 @@ app.use('/api',documentsRoutes)
 const suppliersRoutes = require('./routes/supplier-routes')
 app.use('/api',suppliersRoutes) 
 
+app.use('/api',require('./routes/file-upload-routes'))
+
 module.exports = app;

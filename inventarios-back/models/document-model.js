@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 const Article = require('./article-model')
 
 const documentSchema = new mongoose.Schema({
+  imageUrl: { type: String, required: true },
   folio: { type: String, required: true },
   fechaDoc: { type: String, required: true },
   CBB: { type: Number, required: true }, // codigo QR
