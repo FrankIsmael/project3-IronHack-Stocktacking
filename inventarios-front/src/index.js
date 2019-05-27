@@ -5,6 +5,7 @@ import App from './App';
 import {BrowserRouter} from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
 import 'toastr/build/toastr.css'
+import 'bulma/css/bulma.css'
 
 const Router = () => (
     <BrowserRouter>

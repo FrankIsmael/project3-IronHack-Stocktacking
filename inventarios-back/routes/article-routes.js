@@ -5,7 +5,8 @@ const Article = require('../models/article-model')
 
 // GET ALL ARTICLES
 router.get('/articles', (req, res, next) => {
-    Article.find().populate('suppliers')
+    Article.find()
+        .populate('proveedor')
         .then(articles => res.status(200).json(articles))
         .catch(err => res.status(500).json(err))
 })
@@ -34,7 +35,8 @@ router.get('/articles/:id', (req, res, next) => {
         res.status(400).json({ message: 'Specified id is no valid' })
         return
     }
-    Article.findById(req.params.id).populate('proveedors')
+    Article.findById(req.params.id)
+        .populate('proveedor')
         .then(article => res.status(200).json(article))
         .catch(err => res.status(500).json(err))
 })

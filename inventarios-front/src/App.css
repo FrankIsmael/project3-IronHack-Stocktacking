@@ -23,6 +23,20 @@
   color: #61dafb;
 }
 
+.login{
+  display: flex;
+  justify-content: center;
+  padding-top: 10rem; 
+}
+
+.loginb{
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

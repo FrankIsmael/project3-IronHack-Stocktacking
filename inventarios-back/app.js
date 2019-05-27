@@ -1,16 +1,15 @@
 require('dotenv').config();
 
-const bodyParser   = require('body-parser');
+const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
-const express      = require('express');
-const favicon      = require('serve-favicon');
-const mongoose     = require('mongoose');
-const logger       = require('morgan');
-const path         = require('path');
-const session      = require('express-session')
-const passport     = require('./handlers/passport')
-const cors         = require('cors')
-
+const express = require('express');
+const favicon = require('serve-favicon');
+const mongoose = require('mongoose');
+const logger = require('morgan');
+const path = require('path');
+const session = require('express-session')
+const passport = require('./handlers/passport')
+const cors = require('cors')
 
 mongoose
   .connect(process.env.DB, { useNewUrlParser: true })
@@ -31,7 +30,7 @@ app.use(
     secret: process.env.SECRET,
     saveUninitialized: true,
     resave: true,
-    cookie:{ maxAge: 1000*60*60*24}
+    cookie: { maxAge: 1000 * 60 * 60 * 24 }
   })
 )
 
@@ -41,7 +40,7 @@ app.use(passport.session())
 app.use(
   cors({
     credentials: true,
-    origin:['http://localhost:3000', 'http://localhost:3001']
+    origin: ['http://localhost:3000', 'http://localhost:3001']
   })
 )
 
@@ -54,7 +53,7 @@ app.use(cookieParser());
 // Express View engine setup
 
 app.use(require('node-sass-middleware')({
-  src:  path.join(__dirname, 'public'),
+  src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
@@ -71,14 +70,14 @@ const index = require('./routes/index');
 app.use('/api', index);
 
 const articlesRoutes = require('./routes/article-routes')
-app.use('/api',articlesRoutes)
+app.use('/api', articlesRoutes)
 
 const documentsRoutes = require('./routes/document-routes')
-app.use('/api',documentsRoutes)
+app.use('/api', documentsRoutes)
 
 const suppliersRoutes = require('./routes/supplier-routes')
-app.use('/api',suppliersRoutes) 
+app.use('/api', suppliersRoutes)
 
-app.use('/api',require('./routes/file-upload-routes'))
+app.use('/api', require('./routes/file-upload-routes'))
 
 module.exports = app;

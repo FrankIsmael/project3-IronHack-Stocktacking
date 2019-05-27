@@ -15,7 +15,7 @@ router.post('/login', (req, res, next) => {
   })(req, res, next)
 })
 
-router.post('/newuser', hasAuth, (req, res, next) => {
+router.post('/signup', (req, res, next) => {
   User.register({ ...req.body }, req.body.password)
     .then(user => {
       req.logIn(user, err => {
@@ -27,13 +27,17 @@ router.post('/newuser', hasAuth, (req, res, next) => {
     .catch(err => res.status(500).send({ message: err.message }));
 });
 
-router.get('/logout', hasAuth,(req, res, next) => {
+router.get('/logout',(req, res, next) => {
   req.logout();
-  res.status(200).send({ msg: 'OK'})
+  res.status(200).send({ msg: 'Log out succes!'})
 })
 
-router.get('/loggedin', hasAuth, (req, res, next) => {
-  res.status(200).send(req.user);
+router.get('/loggedin', (req, res, next) => {
+  if(req.isAuthenticated()){
+    res.status(200).json(req.user)
+    return 
+  }
+  res.status(403).send({message:'Unauthorized'});
 });
 
 module.exports = router;

@@ -6,14 +6,11 @@ import AuthService from './auth-service';
 
 const service = new AuthService()
 
-class Login extends Component {
-  /* componentWillMount() {
-    const user = localStorage.getItem('loggedUser')
+class Signup extends Component {
   
-  } */
-
   state = {
     form: {
+      name: '',
       email: '',
       password: ''
     }
@@ -29,13 +26,18 @@ class Login extends Component {
     e.preventDefault()
     const { form } = this.state
     service
-      .login(form)
+      .signup(form)
       .then(response => {
+        this.setState({
+            name:"",
+            email: "",
+            password:""
+        })
+        this.props.getUser(response)
         if (response.err) return toastr.error(response.err)
-        toastr.success('Successful login')
-        window.localStorage.setItem('loggedUser', JSON.stringify(response.role))
-        if(response.role === 'ADMIN') return this.props.history.push('/admin')
-        return this.props.history.push('/supervisor')
+        toastr.success('User created succesfully')
+        window.localStorage.setItem('User', JSON.stringify(response))
+        if(response.role === 'SUPERVISOR') return this.props.history.push('/supervisor')
       })
       .catch(err => {return {msg: err}})
   }
@@ -43,10 +45,10 @@ class Login extends Component {
   render() {
     return (
       <div className="columns is-mobile login">
-        <LoginForm handleInputs={this.handleInputs} handleSubmit={this.handleSubmit}/>
+        <LoginForm handleInputs={this.handleInputs} handleSubmit={this.handleSubmit} handleSignup={true}/>
       </div>
     )
   }
 }
 
-export default Login
+export default Signup

@@ -3,11 +3,11 @@ const Article = require('./article-model')
 
 const documentSchema = new mongoose.Schema({
   imageUrl: { type: String, required: true },
-  folio: { type: String, required: true },
-  fechaDoc: { type: String, required: true },
-  CBB: { type: Number, required: true }, // codigo QR
-  importe: { type: Number, required: true },
-  proveedor: { type: mongoose.Schema.Types.ObjectId, ref: 'Suplier' },
+  folio: { type: String },
+  fechaDoc: { type: String },
+  CBB: { type: Number}, // codigo QR
+  importe: { type: Number },
+  proveedor: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier' },
   articulos: { type: Array },
   nota: { type: String },
   supervisor: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }

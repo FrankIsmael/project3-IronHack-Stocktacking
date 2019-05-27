@@ -5,7 +5,9 @@ const Document = require('../models/document-model')
 
 // GET ALL DOCUMENTS
 router.get('/documents', (req, res, next) => {
-  Document.find().populate('suppliers').populate('users')
+  Document.find()
+    .populate('proveedor')
+    .populate('supervisor')
     .then(doc => res.status(200).json(doc))
     .catch(err => res.status(500).json(err))
 })
@@ -13,14 +15,15 @@ router.get('/documents', (req, res, next) => {
 // CREATE NEW DOCUMENT
 router.post('/documents', (req, res, next) => {
   Document.create({
+    imageUrl: req.body.imageUrl,
     folio: req.body.folio,
     fechaDoc: req.body.fechaDoc,
     CBB: req.body.CBB,
     importe: req.body.importe,
-    proveedor: req.body.proveedorID,
+    proveedor: req.body.proveedor,
     articulos: req.body.articulos,
     nota: req.body.nota,
-    supervisor: req.body.supervisorID
+    supervisor: req.body.supervisor
   })
     .then(doc => res.status(200).json(doc))
     .catch(err => res.status(500).json(err))
@@ -32,7 +35,9 @@ router.get('/documents/:id', (req, res, next) => {
     res.status(400).json({ message: 'Specified id is no valid' })
     return
   }
-  Document.findById(req.params.id).populate('suppliers').populate('users')
+  Document.findById(req.params.id)
+    .populate('proveedor')
+    .populate('supervisor')
     .then(docs => res.status(200).json(docs))
     .catch(err => res.status(500).json(err))
 })
@@ -59,5 +64,9 @@ router.delete('/documents/:id', (req, res, next) => {
     .catch(err => res.status(500).json(err))
 })
 
+function isLogged(req,res,next){
+  if(!req.isAuthenticated()) return res.status(401).json({msg: "You're not logged"})
+  next()
+}
 module.exports = router
 

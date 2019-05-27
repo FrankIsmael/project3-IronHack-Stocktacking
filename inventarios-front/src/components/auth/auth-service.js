@@ -9,9 +9,9 @@ class AuthService {
     })
   }
 
-  new = form => {
+  signup = form => {
     return this.service
-      .post('/newuser', form)
+      .post('/signup', form)
       .then(({ data }) => data)
       .catch(err => err)
   }
@@ -48,7 +48,8 @@ class AuthService {
   saveDocument = (newDocument) => {
     return this.service
     .post('/documents',newDocument)
-    .then(err => {throw err})
+    .then(res => res.data)
+    .catch(err => {throw err})
   }
 }
 
