@@ -10,7 +10,7 @@ class ListSuppliers extends Component {
 
 
     getAllSuppliers = () => {
-        axios.get(`http://localhost:5000/api/suppliers`)
+        axios.get(`https://easystock.herokuapp.com/api/suppliers`)
             .then(responseFromApi => {
                 this.setState({
                     listOfSuppliers: responseFromApi.data

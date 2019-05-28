@@ -21,7 +21,7 @@ class AddArticle extends Component {
     handleFormSubmit = (event) => {
         event.preventDefault();
         const {info} = this.state
-        axios.post("http://localhost:5000/api/documents", { info })
+        axios.post("https://easystock.herokuapp.com/api/documents", { info })
             .then(() => {
                 this.props.getData();
                 this.setState({...info})

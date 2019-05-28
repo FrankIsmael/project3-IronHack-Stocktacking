@@ -18,7 +18,7 @@ class EditArticle extends Component {
     handleFormSubmit= (e) =>{
         const {data} = this.state
         event.preventDefault()
-        axios.put(`http://localhost:5000/api/articles:${this.props._id}`,{data})
+        axios.put(`https://easystock.herokuapp.com/api/articles:${this.props._id}`,{data})
         .then(() => this.props.getTheProject())
         .catch( error => console.log(error))
     }

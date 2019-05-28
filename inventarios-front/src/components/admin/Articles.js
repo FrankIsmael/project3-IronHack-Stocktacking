@@ -10,7 +10,7 @@ class ListaArticulo extends Component {
             }
 
   getAllArticles = () => {
-    axios.get(`http://localhost:5000/api/articles`)
+    axios.get(`https://easystock.herokuapp.com/api/articles`)
       .then(responseFromApi => {
         this.setState({
           listaDeArticulos: responseFromApi.data

@@ -13,7 +13,7 @@ class ArticlesDetails extends Component {
 
     getSingleArticle = () => {
         const {params} = this.props.match
-        axios.get(`http://localhost:5000/api/articles/${params.id}`)
+        axios.get(`https://easystock.herokuapp.com/api/articles/${params.id}`)
             .then(response => {
                 const article = response.data
                 this.setState({...article})
@@ -24,7 +24,7 @@ class ArticlesDetails extends Component {
 
     deleteArticle = (id) => {
         const {params} = this.props.match
-        axios.delete(`http://localhost:5000/api/articles/${params.id}`)
+        axios.delete(`https://easystock.herokuapp.com/api/articles/${params.id}`)
         .then(response => {
             this.props.history.push('/articles')
         })

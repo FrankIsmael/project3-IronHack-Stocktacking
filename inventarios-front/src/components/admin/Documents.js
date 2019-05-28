@@ -10,7 +10,7 @@ class ListDocuments extends Component {
 
 
     getAllDocuments = () => {
-        axios.get(`http://localhost:5000/api/documents`)
+        axios.get(`https://easystock.herokuapp.com/api/documents`)
             .then(responseFromApi => {
                 this.setState({
                     listOfDocuments: responseFromApi.data
