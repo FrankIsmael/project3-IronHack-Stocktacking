@@ -29,7 +29,7 @@ class AddDocument extends Component {
         this.setState({
             imageUrl: response.secure_url
         })
-
+        console.log(response.ocr.ocr.adv_ocr.data[0])
     }
 
     handleSubmit = async e => {
@@ -80,35 +80,3 @@ class AddDocument extends Component {
 }
 
 export default AddDocument
-/*
-<form onSubmit={this.handleSubmit} className="align-left">
-                    <label htmlFor="folio">Folio </label>
-                    <input type="text" value={this.state.folio} name="folio" id="folio" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="fechaDoc">FechaDoc </label>
-                    <input type="text" value={this.state.fechaDoc} name="fechaDoc" id="fechaDoc" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="CBB">CBB </label>
-                    <input type="number" value={this.state.CBB} name="CBB" id="CBB" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="importe">Importe </label>
-                    <input type="number" value={this.state.importe} name="importe" id="importe" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="proveedor">Proveedor </label>
-                    <input type="text" value={this.state.proveedor} name="proveedor" id="proveedor" onChange={this.handleChange} /> <br/>
-
-                    <label htmlFor="articulos">Articulos </label>
-                    <input type="text" value={this.state.articulos} name="articulos" id="articulos" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="nota">Nota  </label>
-                    <input type="text" value={this.state.nota} name="nota" id="nota" onChange={this.handleChange} /><br/>
-
-                    <label htmlFor="supervisor">Supervisor </label>
-                    <input type="text" value={this.state.supervisor} name="supervisor" id="supervisor" onChange={this.handleChange} /><br/>
-
-                    <input type="file" name="imageUrl" id="imageUrl" onChange={this.handleFileUpload} />
-
-
-                    <input type="submit" value="enviar" />
-                </form>
-*/

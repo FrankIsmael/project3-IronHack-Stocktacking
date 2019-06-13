@@ -11,7 +11,6 @@ import Profile from './components/admin/Profile';
 
 class Router extends Component {
   
-
   render(){
     return(
       <Switch>
@@ -27,8 +26,5 @@ class Router extends Component {
     )
   }
 }
-
-  
-
 
 export default Router

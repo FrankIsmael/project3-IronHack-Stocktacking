@@ -9,7 +9,6 @@ router.post('/upload', uploader.single('imageUrl',{OCR:'adv_ocr'}), (req, res, n
   }
   res.json({secure_url:req.file.secure_url,ocr:req.file.info})
   console.log(res.json())
-
 })
 
 module.exports = router
